@@ -6,7 +6,7 @@ import domain.Space
 
 object ResultView {
     fun printBoard(board: Board) {
-        board.rows.forEach {
+        board.forEach {
             printRow(it)
         }
     }

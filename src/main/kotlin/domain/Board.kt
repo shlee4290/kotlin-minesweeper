@@ -1,18 +1,28 @@
 package domain
 
 data class Board(
-    val rows: List<Spaces>,
+    private val rows: List<Spaces>,
 ) {
 
-    companion object {
-        fun create(boardSize: BoardSize, minePositionGenerator: NumbersGenerator): Board {
-            val spaces = emptySpaces(boardSize)
-            spaces.plantMinesAt(minePositionGenerator.generate())
-            return Board(spaces.chunked(boardSize.width.value))
-        }
+    val numberOfRow: Int = rows.size
 
-        private fun emptySpaces(boardSize: BoardSize): Spaces {
-            return Spaces.emptySpaces(boardSize.numberOfSpaces)
+    fun forEach(action: (Spaces) -> Unit) {
+        rows.forEach(action)
+    }
+
+    fun plantMines(minePositions: Positions) {
+        minePositions.forEach {
+            rows[it.y].plantMineAt(it.x)
+        }
+    }
+
+    companion object {
+        fun create(boardSize: BoardSize): Board {
+            return Board(
+                List(boardSize.height.value) {
+                    Spaces.emptySpaces(boardSize.width.value)
+                }
+            )
         }
     }
 }

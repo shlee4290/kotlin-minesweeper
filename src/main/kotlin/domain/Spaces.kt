@@ -6,16 +6,8 @@ class Spaces(private val spaces: MutableList<Space>) {
         return spaces.toList()
     }
 
-    fun chunked(size: Int): List<Spaces> {
-        return spaces.chunked(size).map { Spaces(it.toMutableList()) }
-    }
-
-    private fun plantMineAt(index: Int) {
+    fun plantMineAt(index: Int) {
         spaces[index] = Space.Mine
-    }
-
-    fun plantMinesAt(indices: List<Int>) {
-        indices.forEach { plantMineAt(it) }
     }
 
     companion object {

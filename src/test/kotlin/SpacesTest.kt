@@ -1,5 +1,5 @@
-import domain.Spaces
 import domain.Space
+import domain.Spaces
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -23,14 +23,14 @@ class SpacesTest {
     }
 
     @Test
-    fun `plantMines 테스트`() {
-        val indexToPlantMine = listOf(1, 4)
+    fun `plantMine 테스트`() {
+        val indexToPlantMine = 1
         val minePlantedSpaces = Spaces.emptySpaces(5).apply {
-            plantMinesAt(indexToPlantMine)
+            plantMineAt(indexToPlantMine)
         }
         minePlantedSpaces.list()
             .forEachIndexed { index, space ->
-                if (index in indexToPlantMine) assertThat(space).isEqualTo(Space.Mine)
+                if (index == indexToPlantMine) assertThat(space).isEqualTo(Space.Mine)
                 else assertThat(space).isEqualTo(Space.Empty)
             }
     }

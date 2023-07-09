@@ -4,6 +4,7 @@ import domain.Board
 import domain.BoardSize
 import domain.Height
 import domain.MineCount
+import domain.Positions
 import domain.RandomNonNegativeNumberGenerator
 import domain.Width
 import presentation.InputView
@@ -16,12 +17,14 @@ fun main() {
     )
     val mineCount = MineCount(InputView.getMineCount())
 
-    val board = Board.create(
-        boardSize,
-        RandomNonNegativeNumberGenerator(
-            to = boardSize.numberOfSpaces,
-            count = mineCount.value,
-        )
+    val minePositions = RandomNonNegativeNumberGenerator(
+        to = boardSize.numberOfSpaces,
+        count = mineCount.value,
     )
+        .generate()
+        .let { Positions.convertToPositions(it, boardSize.width) }
+
+    val board = Board.create(boardSize)
+    board.plantMines(minePositions)
     ResultView.printBoard(board)
 }
