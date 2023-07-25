@@ -1,6 +1,7 @@
 import domain.Board
 import domain.BoardSize
 import domain.Height
+import domain.Positions
 import domain.Width
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -14,6 +15,7 @@ class BoardTest {
                 Width(2),
                 Height(3)
             ),
+            Positions(emptyList())
         )
 
         board.forEach {

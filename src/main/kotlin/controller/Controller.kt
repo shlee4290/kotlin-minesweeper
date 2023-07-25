@@ -24,7 +24,6 @@ fun main() {
         .generate()
         .let { Positions.convertToPositions(it, boardSize.width) }
 
-    val board = Board.create(boardSize)
-    board.plantMines(minePositions)
+    val board = Board.create(boardSize, minePositions)
     ResultView.printBoard(board)
 }

@@ -2,5 +2,14 @@ package domain
 
 sealed interface Space {
     object Mine : Space
-    object Empty : Space
+    class Empty : Space {
+        private var mineCount: MineCount = MineCount(0)
+
+        val numberOfMine: Int
+            get() = mineCount.value
+
+        fun increaseMineCount() {
+            mineCount = mineCount.increase()
+        }
+    }
 }

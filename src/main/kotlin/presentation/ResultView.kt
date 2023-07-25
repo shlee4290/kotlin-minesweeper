@@ -21,7 +21,7 @@ object ResultView {
     private fun printSpace(space: Space) {
         when (space) {
             is Space.Mine -> print("*")
-            is Space.Empty -> print("C")
+            is Space.Empty -> print(space.numberOfMine)
         }
         print(" ")
     }
