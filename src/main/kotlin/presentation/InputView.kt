@@ -16,10 +16,25 @@ object InputView {
         return readInt()
     }
 
+    fun getPosition(): Pair<Int, Int> {
+        print("open: ")
+        return readTwoInt()
+    }
+
     private tailrec fun readInt(): Int {
         val enteredInt = readln().toIntOrNull()
         if (enteredInt != null) return enteredInt
         println("다시 입력해 주세요.")
         return readInt()
+    }
+
+    private tailrec fun readTwoInt(): Pair<Int, Int> {
+        val enteredInt = readln().split(",")
+            .mapNotNull {
+                it.trim().toIntOrNull()
+            }
+        if (enteredInt.size == 2) return enteredInt.first() to enteredInt.last()
+        println("다시 입력해 주세요.")
+        return readTwoInt()
     }
 }

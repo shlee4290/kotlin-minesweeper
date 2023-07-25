@@ -19,6 +19,11 @@ object ResultView {
     }
 
     private fun printSpace(space: Space) {
+        if (!space.isOpen) {
+            print("C")
+            print(" ")
+            return
+        }
         when (space) {
             is Space.Mine -> print("*")
             is Space.Empty -> print(space.numberOfMine)

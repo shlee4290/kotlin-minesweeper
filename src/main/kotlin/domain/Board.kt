@@ -16,6 +16,10 @@ data class Board(
         rows.forEach(action)
     }
 
+    fun open(position: Position): Boolean {
+        return rows[position.y].openAt(position.x)
+    }
+
     private fun plantMines() {
         minePositions.forEach {
             rows[it.y].plantMineAt(it.x)

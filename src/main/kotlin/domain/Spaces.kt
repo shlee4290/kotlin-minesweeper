@@ -7,13 +7,20 @@ class Spaces(private val spaces: MutableList<Space>) {
     }
 
     fun plantMineAt(index: Int) {
-        spaces[index] = Space.Mine
+        spaces[index] = Space.Mine()
     }
 
     fun increaseMineCountAt(index: Int) {
         with(spaces[index]) {
-            if (this is Space.Empty) increaseMineCount()
+            if (this is Space.Empty) {
+                spaces[index] = increaseMineCount()
+            }
         }
+    }
+
+    fun openAt(index: Int): Boolean {
+        spaces[index] = spaces[index].open()
+        return spaces[index] is Space.Mine
     }
 
     companion object {

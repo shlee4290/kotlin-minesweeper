@@ -22,5 +22,9 @@ data class Position(val x: Int, val y: Int) {
                 y = value / width.value,
             )
         }
+
+        fun convertToPosition(pair: Pair<Int, Int>): Position {
+            return Position(pair.first, pair.second)
+        }
     }
 }

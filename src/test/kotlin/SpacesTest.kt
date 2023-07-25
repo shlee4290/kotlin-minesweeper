@@ -30,7 +30,7 @@ class SpacesTest {
         }
         minePlantedSpaces.list()
             .forEachIndexed { index, space ->
-                if (index == indexToPlantMine) assertThat(space).isEqualTo(Space.Mine)
+                if (index == indexToPlantMine) assertThat(space).isInstanceOf(Space.Mine::class.java)
                 else assertThat(space).isInstanceOf(Space.Empty::class.java)
             }
     }
